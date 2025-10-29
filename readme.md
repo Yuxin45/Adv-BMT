@@ -64,17 +64,6 @@ conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvi
 
 ```
 
-
-## Run experiment
-
-```bash
-bash scripts/020...
-```
-
-## Evaluate
-Add `--eval` flag after for `train_motion.py`.
-
-
 ### Running Adv-BMT
 
 #### Gradio demo
