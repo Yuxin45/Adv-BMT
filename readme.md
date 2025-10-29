@@ -4,10 +4,10 @@
 <a href="https://metadriverse.github.io/adv-bmt/"><img src="https://img.shields.io/badge/Project-Page-yellow"></a>
 
 [Yuxin Liu](https://www.linkedin.com/in/yuxinclaire/)<sup>1*</sup>, [Zhenghao Peng](https://pengzhenghao.github.io)<sup>1*</sup>, [Xuanhao Cui]()<sup>1</sup>, [Bolei Zhou](https://boleizhou.github.io/)<sup>1</sup> <br>
-<sup>1</sup>UCLA&emsp
+<sup>1</sup>UCLA&emsp;
 <sup>*</sup>Equal contribution <br>
 
-![Adv-BMT teaser figure](docs/teaser.jpg)
+![Adv-BMT teaser figure](docs/teaser.jpeg)
 
 ## Getting started
 
@@ -135,4 +135,4 @@ If you use our code in your research, please cite the following work.
       url={https://arxiv.org/abs/2506.09485}, 
 }
 ```
-You can find our paper in the NeurIPS 2024 Proceedings with the full BibTex citation [here](https://papers.nips.cc/paper_files/paper/2024/hash/e8e30fda5ab87ea93360a36288ac0145-Abstract-Conference.html).
+You can find our paper in the NeurIPS 2025 Proceedings with the full BibTex citation [here]().
