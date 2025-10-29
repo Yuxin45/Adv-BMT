@@ -7,7 +7,7 @@
 <sup>1</sup>UCLA&emsp;
 <sup>*</sup>Equal contribution <br>
 
-![Adv-BMT teaser figure](docs/teaser.jpeg)
+<!-- ![Adv-BMT teaser figure](docs/teaser.jpeg) -->
 ![Adv-BMT Example Demo](docs/demo.jpeg)
 
 ## Getting started
