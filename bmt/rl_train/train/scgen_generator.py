@@ -469,7 +469,7 @@ def is_sdc_parking(scenario_description):
         return False
 
 class SCGEN_Generator:
-    def __init__(self, model_name='0202_midgpt', TF_mode="all_TF_except_adv"):
+    def __init__(self, model_name='0202_midgpt', TF_mode="all_TF_except_adv", ckpt_path="../../ckpt/last.ckpt"):
 
         from hydra import initialize_config_dir, compose
         from infgen.utils import REPO_ROOT
@@ -484,8 +484,7 @@ class SCGEN_Generator:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         assert torch.cuda.is_available(), "CUDA is not available, please check your environment."
 
-        CKPT_PATH = "/bigdata/zhenghao/infgen/lightning_logs/infgen/0205_MidGPT_V18_WBackward_2025-02-05/checkpoints" 
-        pl_model = utils.get_model(checkpoint_path=CKPT_PATH).eval()
+        pl_model = utils.get_model(checkpoint_path=ckpt_path).eval()
 
         config = pl_model.config
         config.PREPROCESSING.keep_all_data = True
