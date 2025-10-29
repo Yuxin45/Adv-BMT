@@ -81,7 +81,8 @@ bash scripts/ADV-BMT_dataset_generate.sh
 ```
 
 #### BMT Checkpoint and dataset
-We provide 500 scenarios for Adv-BMT and our baselines for reference purposes. 
+We provide 500 WOMD scenarios and our BMT checkpoint reference purposes. [Link](https://drive.google.com/drive/folders/1vqoQMG7k5klwUqGdWK9BO6mukk4GhEUV?usp=sharing) 
+
 
 
 #### Evaluation
