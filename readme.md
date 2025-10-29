@@ -1,3 +1,17 @@
+# Adv-BMT: Bidirectional Motion Transformer for Safety-Critical Traffic Scenario Generation (NeurIPS 2025)
+
+<a href="https://arxiv.org/pdf/2506.09485"><img src="https://img.shields.io/badge/arXiv-Paper-red"></a> 
+<a href="https://metadriverse.github.io/adv-bmt/"><img src="https://img.shields.io/badge/Project-Page-yellow"></a>
+[![GitHub](https://img.shields.io/github/stars/genforce/ctrl-x?style=social)](https://github.com/Yuxin45/Adv-BMT/tree/refactor/rename-infgen-to-bmt)
+
+[Yuxin Liu](https://www.linkedin.com/in/yuxinclaire/)<sup>1*</sup>, [Zhenghao Peng](https://pengzhenghao.github.io)<sup>1*</sup>, [Xuanhao Cui]()<sup>1</sup>, [Bolei Zhou](https://boleizhou.github.io/)<sup>1</sup> <br>
+<sup>1</sup>UCLA&emsp
+<sup>*</sup>Equal contribution <br>
+
+![Adv-BMT teaser figure](docs/teaser.jpg)
+
+## Getting started
+
 ## Setup environment
 
 > note: Please refer to [FAQ](#FAQ) section for any issues.
@@ -106,3 +120,20 @@ A: Try:
 export CUDA_HOME=/usr/local/cuda-12.1
 python setup.py develop
 ```
+
+## Reference
+
+If you use our code in your research, please cite the following work.
+
+```bibtex
+@misc{liu2025advbmtbidirectionalmotiontransformer,
+      title={Adv-BMT: Bidirectional Motion Transformer for Safety-Critical Traffic Scenario Generation}, 
+      author={Yuxin Liu and Zhenghao Peng and Xuanhao Cui and Bolei Zhou},
+      year={2025},
+      eprint={2506.09485},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2506.09485}, 
+}
+```
+You can find our paper in the NeurIPS 2024 Proceedings with the full BibTex citation [here](https://papers.nips.cc/paper_files/paper/2024/hash/e8e30fda5ab87ea93360a36288ac0145-Abstract-Conference.html).
