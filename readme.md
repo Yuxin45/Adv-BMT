@@ -2,7 +2,6 @@
 
 <a href="https://arxiv.org/pdf/2506.09485"><img src="https://img.shields.io/badge/arXiv-Paper-red"></a> 
 <a href="https://metadriverse.github.io/adv-bmt/"><img src="https://img.shields.io/badge/Project-Page-yellow"></a>
-[![GitHub](https://img.shields.io/github/stars/genforce/ctrl-x?style=social)](https://github.com/Yuxin45/Adv-BMT/tree/refactor/rename-infgen-to-bmt)
 
 [Yuxin Liu](https://www.linkedin.com/in/yuxinclaire/)<sup>1*</sup>, [Zhenghao Peng](https://pengzhenghao.github.io)<sup>1*</sup>, [Xuanhao Cui]()<sup>1</sup>, [Bolei Zhou](https://boleizhou.github.io/)<sup>1</sup> <br>
 <sup>1</sup>UCLA&emsp
