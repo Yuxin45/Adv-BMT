@@ -15,8 +15,6 @@
 
 > note: Please refer to [FAQ](#FAQ) section for any issues.
 
-
-
 ```bash
 
 # Create virtual environment
@@ -81,6 +79,10 @@ We provide a script for running Adv-BMT.
 bash scripts/ADV-BMT_dataset_generate.sh
 ```
 
+#### BMT Checkpoint and dataset
+We provide 500 scenarios for Adv-BMT and our baselines for reference purposes. 
+
+
 #### Evaluation
 We provide scripts for running scenario evaluations.
 ```bash
@@ -97,7 +99,7 @@ There are a required argument for our scenario evaluator:
 | `GPTmodel`                     | BMT with forward prediction              | 
 | `Backward`                        | BMT with reverse prediction              | 
 | `Backward_Forward` | BMT with bidirectional prediction              |
-| `CAT/SEAL/STRIVE` | baseline generated scenario             |
+| `CAT` or `STRIVE` or `SEAL`| baseline generated scenario            |
 
 
 #### RL Experiment
