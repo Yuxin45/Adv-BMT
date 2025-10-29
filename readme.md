@@ -8,6 +8,7 @@
 <sup>*</sup>Equal contribution <br>
 
 ![Adv-BMT teaser figure](docs/teaser.jpeg)
+![Adv-BMT Example Demo](docs/demo.jpeg)
 
 ## Getting started
 
@@ -89,9 +90,7 @@ We provide scripts for running scenario evaluations.
 python bmt/eval/evaluate_scenario_metrics.py eval_mode={your_eval_mode}
 ```
 
-Evaluation argument
-
-There are a required argument for our scenario evaluator:
+Argument:
 
 | eval_mode                                 |meaning |
 | ---------------------------------------- | ------------------ | 
