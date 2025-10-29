@@ -84,8 +84,21 @@ bash scripts/ADV-BMT_dataset_generate.sh
 #### Evaluation
 We provide scripts for running scenario evaluations.
 ```bash
-python bmt/eval/evaluate_scenario_metrics.py eval_mode="SCGEN"
+python bmt/eval/evaluate_scenario_metrics.py eval_mode={your_eval_mode}
 ```
+
+Evaluation argument
+
+There are a required argument for our scenario evaluator:
+
+| eval_mode                                 |meaning |
+| ---------------------------------------- | ------------------ | 
+| `SCGEN`                          | Adv-BMT generation            | 
+| `GPTmodel`                     | BMT with forward prediction              | 
+| `Backward`                        | BMT with reverse prediction              | 
+| `Backward_Forward` | BMT with bidirectional prediction              |
+| `CAT/SEAL/STRIVE` | baseline generated scenario             |
+
 
 #### RL Experiment
 We provide scripts for running open-loop and closed-loop reinforcement learning.
