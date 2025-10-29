@@ -75,6 +75,34 @@ bash scripts/020...
 Add `--eval` flag after for `train_motion.py`.
 
 
+### Running Adv-BMT
+
+#### Gradio demo
+
+We provide a user interface for testing our method. Running the following command starts the demo.
+```bash
+python bmt/gradio_ui/new_ui.py --share
+```
+
+
+#### Running Adv-BMT
+
+We provide a script for running Adv-BMT.
+```bash
+bash scripts/ADV-BMT_dataset_generate.sh
+```
+
+#### Evaluation
+We provide scripts for running scenario evaluations.
+```bash
+python bmt/eval/evaluate_scenario_metrics.py eval_mode="SCGEN"
+```
+
+#### RL Experiment
+We provide scripts for running open-loop and closed-loop reinforcement learning.
+```bash
+bash bmt/rl_train/scripts/0511_CLRL_SCGEN.sh
+```
 
 ## FAQ
 
@@ -135,4 +163,4 @@ If you use our code in your research, please cite the following work.
       url={https://arxiv.org/abs/2506.09485}, 
 }
 ```
-You can find our paper in the NeurIPS 2025 Proceedings with the full BibTex citation [here]().
+You can find our paper in the NeurIPS 2025 Proceedings with the full BibTex citation [here](https://neurips.cc/virtual/2025/poster/117225).
