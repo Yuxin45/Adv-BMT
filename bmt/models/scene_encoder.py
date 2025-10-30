@@ -2,12 +2,12 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from infgen.dataset import constants
-from infgen.models.layers import polyline_encoder, common_layers, position_encoding_utils
+from bmt.dataset import constants
+from bmt.models.layers import polyline_encoder, common_layers, position_encoding_utils
 # from torch.nn.modules.transformer import TransformerEncoderLayer as NativeTransformerEncoderLayer
-from infgen.models.layers.encoder_layer import TransformerEncoderLayer  # as NativeTransformerEncoderLayer
-from infgen.models.ops.collapse_time import collapse_time
-from infgen.utils import rotate, unwrap
+from bmt.models.layers.encoder_layer import TransformerEncoderLayer  # as NativeTransformerEncoderLayer
+from bmt.models.ops.collapse_time import collapse_time
+from bmt.utils import rotate, unwrap
 
 
 def mode_agent_id(agent_id, max_agents, fill_negative_1=False):
@@ -358,7 +358,7 @@ class SceneEncoder(nn.Module):
 
 
 if __name__ == '__main__':
-    from infgen.utils import debug_tools
+    from bmt.utils import debug_tools
 
     config = debug_tools.get_debug_config()
     model = SceneEncoder(config)

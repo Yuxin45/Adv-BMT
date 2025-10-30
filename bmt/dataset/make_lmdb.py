@@ -19,7 +19,7 @@ import lmdb
 import omegaconf
 import tqdm
 
-from infgen.dataset.dataset import InfgenDataset
+from bmt.dataset.dataset import InfgenDataset
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 

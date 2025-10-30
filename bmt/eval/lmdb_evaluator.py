@@ -11,11 +11,11 @@ import io
 import numpy as np
 import torch
 
-from infgen.dataset.preprocessor import centralize_to_map_center
-from infgen.eval.waymo_motion_prediction_evaluator import _repeat_for_modes
-from infgen.eval.wosac_eval import wosac_evaluation
-from infgen.tokenization import get_tokenizer
-from infgen.utils import wrap_to_pi, rotate
+from bmt.dataset.preprocessor import centralize_to_map_center
+from bmt.eval.waymo_motion_prediction_evaluator import _repeat_for_modes
+from bmt.eval.wosac_eval import wosac_evaluation
+from bmt.tokenization import get_tokenizer
+from bmt.utils import wrap_to_pi, rotate
 
 import json
 import os
@@ -29,7 +29,7 @@ import lmdb
 import omegaconf
 import tqdm
 
-from infgen.dataset.dataset import InfgenDataset
+from bmt.dataset.dataset import InfgenDataset
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 

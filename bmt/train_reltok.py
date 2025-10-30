@@ -9,10 +9,10 @@ import wandb
 from lightning.pytorch.callbacks import ModelCheckpoint
 from lightning.pytorch.loggers import WandbLogger, TensorBoardLogger
 
-from infgen.dataset.datamodule import InfgenDataModule
+from bmt.dataset.datamodule import InfgenDataModule
 # from infgen.models.motionlm_lightning import MotionLMLightning
-from infgen.tokenization.reltok import ReltokLightning
-from infgen.utils import global_config, cfg_from_yaml_file, REPO_ROOT, get_time_str
+from bmt.tokenization.reltok import ReltokLightning
+from bmt.utils import global_config, cfg_from_yaml_file, REPO_ROOT, get_time_str
 
 
 def main():

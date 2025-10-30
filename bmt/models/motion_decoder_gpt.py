@@ -2,15 +2,15 @@ import torch
 import torch.nn as nn
 from torch_geometric.utils import dense_to_sparse
 
-from infgen.dataset import constants
-from infgen.dataset.preprocess_action_label import SafetyAction
-from infgen.models import relation
-from infgen.models.layers import common_layers, fourier_embedding
-from infgen.models.layers.gpt_decoder_layer import MultiCrossAttTransformerDecoderLayer, MultiCrossAttTransformerDecoder
-from infgen.models.motion_decoder import create_causal_mask
-from infgen.models.scene_encoder import mode_agent_id
-from infgen.tokenization import get_action_dim, get_tokenizer, START_ACTION, END_ACTION
-from infgen.utils import utils
+from bmt.dataset import constants
+from bmt.dataset.preprocess_action_label import SafetyAction
+from bmt.models import relation
+from bmt.models.layers import common_layers, fourier_embedding
+from bmt.models.layers.gpt_decoder_layer import MultiCrossAttTransformerDecoderLayer, MultiCrossAttTransformerDecoder
+from bmt.models.motion_decoder import create_causal_mask
+from bmt.models.scene_encoder import mode_agent_id
+from bmt.tokenization import get_action_dim, get_tokenizer, START_ACTION, END_ACTION
+from bmt.utils import utils
 
 
 def get_edge_info(attn_valid_mask, rel_pe_cross, rel_pe_cross_v=None):

@@ -8,9 +8,9 @@ import torch
 import wandb
 from lightning.pytorch.loggers import WandbLogger, TensorBoardLogger
 
-from infgen.dataset.datamodule import InfgenDataModule
-from infgen.models.motionlm_lightning import MotionLMLightning
-from infgen.utils import global_config, cfg_from_list, cfg_from_yaml_file
+from bmt.dataset.datamodule import InfgenDataModule
+from bmt.models.motionlm_lightning import MotionLMLightning
+from bmt.utils import global_config, cfg_from_list, cfg_from_yaml_file
 
 # torch.backends.cudnn.benchmark = True
 # torch.set_float32_matmul_precision("high")  # Enable TF32 matrix multiplication

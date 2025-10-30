@@ -10,8 +10,8 @@ from torch.nn.init import constant_
 from torch.nn.init import xavier_uniform_
 from torch.nn.parameter import Parameter
 
-import infgen
-from infgen.models.ops.attention import attention_utils_v2
+import bmt
+from bmt.models.ops.attention import attention_utils_v2
 
 
 class MultiheadAttentionLocal(nn.Module):

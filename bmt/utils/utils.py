@@ -847,9 +847,9 @@ def checkpoint_surgery_func(checkpoint, model_class, config):
 
 def get_model(config=None, checkpoint_path=None, device=None, default_config="motion_default.yaml"):
     assert config is not None or checkpoint_path is not None, "Either config or checkpoint_path must be provided."
-    from infgen.models.motionlm_lightning import MotionLMLightning
+    from bmt.models.motionlm_lightning import MotionLMLightning
 
-    from infgen.utils.config import global_config, cfg_from_yaml_file
+    from bmt.utils.config import global_config, cfg_from_yaml_file
     default_config = cfg_from_yaml_file(REPO_ROOT / "cfgs" / default_config, global_config)
 
     pretrained_path_from_config = config.pretrain if config is not None else None

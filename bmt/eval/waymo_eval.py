@@ -27,7 +27,7 @@ try:
     from waymo_open_dataset.metrics.ops import py_metrics_ops
     from waymo_open_dataset.metrics.python import config_util_py as config_util
     from waymo_open_dataset.protos import motion_metrics_pb2
-    from infgen.dataset.constants import object_int_to_type
+    from bmt.dataset.constants import object_int_to_type
 except ModuleNotFoundError:
     pass
 

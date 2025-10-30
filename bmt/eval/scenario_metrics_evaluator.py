@@ -2,18 +2,18 @@ import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 import copy
 import pickle
-from infgen.utils.safety_critical_generation_utils import _overwrite_data_given_agents_not_ooi, get_ego_edge_points, get_ego_edge_points_old, post_process_adv_traj, _overwrite_data_given_agents_ooi, _overwrite_data_given_agents, set_adv, run_backward_prediction_with_teacher_forcing, convert_tensors_to_double
-from infgen.utils import utils
-from infgen.dataset.scenarionet_utils import overwrite_gt_to_pred_field
+from bmt.utils.safety_critical_generation_utils import _overwrite_data_given_agents_not_ooi, get_ego_edge_points, get_ego_edge_points_old, post_process_adv_traj, _overwrite_data_given_agents_ooi, _overwrite_data_given_agents, set_adv, run_backward_prediction_with_teacher_forcing, convert_tensors_to_double
+from bmt.utils import utils
+from bmt.dataset.scenarionet_utils import overwrite_gt_to_pred_field
 import copy
 import hydra
 import numpy as np
 import omegaconf
 import tqdm
 
-from infgen.utils import utils
-from infgen.dataset.dataset import InfgenDataset
-from infgen.utils import REPO_ROOT
+from bmt.utils import utils
+from bmt.dataset.dataset import InfgenDataset
+from bmt.utils import REPO_ROOT
 import torch
 
 import pathlib
@@ -25,12 +25,12 @@ from waymo_open_dataset.wdl_limited.sim_agents_metrics import map_metric_feature
 import torch.nn.functional as F
 import itertools
 from waymo_open_dataset.protos import map_pb2
-from infgen.eval.waymo_motion_prediction_evaluator import _repeat_for_modes
+from bmt.eval.waymo_motion_prediction_evaluator import _repeat_for_modes
 from collections.abc import Iterable
 import pdb
-from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
-from infgen.eval.debug_scenario_metrics import Evaluator
-from infgen.utils.utils import numpy_to_torch
+from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+from bmt.eval.debug_scenario_metrics import Evaluator
+from bmt.utils.utils import numpy_to_torch
 
 
 class EvaluationLightningModule(pl.LightningModule):
@@ -121,7 +121,7 @@ class EvaluationLightningModule(pl.LightningModule):
 
     def preprocess_SCGEN(self, raw_data):
 
-        from infgen.utils.safety_critical_generation_utils import set_adv
+        from bmt.utils.safety_critical_generation_utils import set_adv
         data_dict = copy.deepcopy(raw_data)
         data_dict, adv_id = set_adv(data_dict)
         input_data = numpy_to_torch(data_dict, device=self.model.device)
@@ -213,7 +213,7 @@ class EvaluationLightningModule(pl.LightningModule):
 @hydra.main(version_base=None, config_path=str(REPO_ROOT / "cfgs"), config_name="1031_midgpt.yaml")
 def run_combined_evaluation(config):
     from pytorch_lightning import Trainer
-    from infgen.utils import utils
+    from bmt.utils import utils
     path = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"
     omegaconf.OmegaConf.set_struct(config, False)
     config.PREPROCESSING.keep_all_data = True
@@ -229,7 +229,7 @@ def run_combined_evaluation(config):
 
     eval_mode = config.eval_mode
 
-    from infgen.tokenization.motion_tokenizers import get_tokenizer
+    from bmt.tokenization.motion_tokenizers import get_tokenizer
     tokenizer = get_tokenizer(config)
 
     evaluator = Evaluator()

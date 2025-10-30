@@ -1,7 +1,7 @@
 import torch
 
-from infgen.models.motionlm import nucleus_sampling
-from infgen.tokenization.gen_tokenizers import Tokens, InfgenTokenizer
+from bmt.models.motionlm import nucleus_sampling
+from bmt.tokenization.gen_tokenizers import Tokens, InfgenTokenizer
 
 
 def sample_action(logits, config):

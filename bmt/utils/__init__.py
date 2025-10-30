@@ -1,2 +1,2 @@
-from infgen.utils.config import *
-from infgen.utils.utils import *
+from bmt.utils.config import *
+from bmt.utils.utils import *

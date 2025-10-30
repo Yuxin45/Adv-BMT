@@ -12,9 +12,9 @@ import numpy as np
 from scenarionet import read_dataset_summary, read_scenario
 from torch.utils.data import Dataset
 
-from infgen.dataset.preprocessor import preprocess_scenario_description
-from infgen.utils import global_config
-from infgen.utils import utils
+from bmt.dataset.preprocessor import preprocess_scenario_description
+from bmt.utils import global_config
+from bmt.utils import utils
 
 # import lmdb
 
@@ -198,7 +198,7 @@ class InfgenDataset(Dataset):
         #     assert cache_folder.is_dir()
         #     self.reader = LMDBDatasetReader(cache_folder)  # LMDB Reader to load samples
 
-        from infgen.tokenization import get_tokenizer
+        from bmt.tokenization import get_tokenizer
         self.tokenizer = get_tokenizer(config=self.config)
 
     def __len__(self):

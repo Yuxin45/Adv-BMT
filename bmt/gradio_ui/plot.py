@@ -7,8 +7,8 @@ import seaborn as sns
 from matplotlib.animation import FFMpegWriter
 from matplotlib.patches import Polygon, Circle, Rectangle
 
-from infgen.dataset.dataset import InfgenDataset
-from infgen.utils import REPO_ROOT
+from bmt.dataset.dataset import InfgenDataset
+from bmt.utils import REPO_ROOT
 import torch
 import pathlib
 
@@ -631,7 +631,7 @@ def debug(config):
         try:
             raw_data = data = next(ddd)
 
-            from infgen.tokenization import get_tokenizer
+            from bmt.tokenization import get_tokenizer
             tokenizer = get_tokenizer(config)
             data, _ = tokenizer.tokenize_numpy_array(data)
             data["decoder/output_action"] = data["decoder/target_action"]
@@ -660,7 +660,7 @@ def debug_backward_prediction(config):
         try:
             raw_data = data = next(ddd)
 
-            from infgen.tokenization import get_tokenizer
+            from bmt.tokenization import get_tokenizer
             tokenizer = get_tokenizer(config)
             data, _ = tokenizer.tokenize_numpy_array(data, backward_prediction=True)
             data["decoder/output_action"] = data["decoder/target_action"]

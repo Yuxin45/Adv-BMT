@@ -7,8 +7,8 @@ from torch.nn import Module
 from torch.nn import functional as F
 from torch.nn.modules.transformer import Dropout, Linear
 
-from infgen.models.layers.decoder_layer import LayerNorm, _get_activation_fn
-from infgen.models.layers.multi_head_attention import MultiheadAttention
+from bmt.models.layers.decoder_layer import LayerNorm, _get_activation_fn
+from bmt.models.layers.multi_head_attention import MultiheadAttention
 
 
 class TransformerEncoderLayer(Module):

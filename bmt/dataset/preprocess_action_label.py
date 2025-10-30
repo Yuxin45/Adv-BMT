@@ -1,7 +1,7 @@
 import numpy as np
 from shapely.geometry import Polygon
 
-from infgen.utils import utils
+from bmt.utils import utils
 import torch
 
 INVALID_VALUE = -10000

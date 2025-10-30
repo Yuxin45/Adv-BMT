@@ -24,7 +24,7 @@ def main():
 
     args = parser.parse_args()
 
-    from infgen.rl_train.train.scgen_generator import SCGEN_Generator
+    from bmt.rl_train.train.scgen_generator import SCGEN_Generator
     generator = SCGEN_Generator()
     num_modes = args.num_mode
     num_scenarios = args.num_scenario

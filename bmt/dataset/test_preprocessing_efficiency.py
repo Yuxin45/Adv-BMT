@@ -1,6 +1,6 @@
 import torch
 
-from infgen.utils import debug_tools
+from bmt.utils import debug_tools
 
 
 def toy_test():

@@ -10,13 +10,13 @@ from matplotlib.animation import FFMpegWriter
 from matplotlib.patches import Polygon, Circle, Rectangle
 import tqdm
 # Load model
-from infgen.utils import utils
-from infgen.dataset.dataset import InfgenDataset
-from infgen.utils import REPO_ROOT
+from bmt.utils import utils
+from bmt.dataset.dataset import InfgenDataset
+from bmt.utils import REPO_ROOT
 import torch
 
-from infgen.gradio_ui.plot import plot_pred, create_animation_from_pred
-from infgen.gradio_ui.plot import plot_pred
+from bmt.gradio_ui.plot import plot_pred, create_animation_from_pred
+from bmt.gradio_ui.plot import plot_pred
 import pathlib
 from waymo_open_dataset.protos import sim_agents_metrics_pb2
 from google.protobuf import text_format
@@ -26,10 +26,10 @@ from waymo_open_dataset.wdl_limited.sim_agents_metrics import map_metric_feature
 import torch.nn.functional as F
 import itertools
 from waymo_open_dataset.protos import map_pb2
-from infgen.eval.waymo_motion_prediction_evaluator import _repeat_for_modes
+from bmt.eval.waymo_motion_prediction_evaluator import _repeat_for_modes
 from collections.abc import Iterable
 import pdb
-from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
 # @hydra.main(version_base=None, config_path=str(REPO_ROOT / "cfgs"), config_name="motion_default.yaml")
 # def debug(config):
 #     omegaconf.OmegaConf.set_struct(config, False)
@@ -73,7 +73,7 @@ def conv(tensor, dtype=tf.float32):
 # conv = lambda tensor: tf.convert_to_tensor(tensor if type(tensor) == np.ndarray else tensor.cpu().numpy())
 rconv = lambda tf_tensor: torch.from_numpy(tf_tensor if type(tf_tensor) == np.ndarray else tf_tensor.numpy()
                                            ).to(torch.device("cuda"))
-from infgen.utils.utils import numpy_to_torch
+from bmt.utils.utils import numpy_to_torch
 
 
 def tf_to_torch(tf_tensor, device=None):
@@ -643,7 +643,7 @@ def debug_run_model(config):
     device = model.device
 
     test_dataset = InfgenDataset(config, "test")
-    from infgen.tokenization import get_tokenizer
+    from bmt.tokenization import get_tokenizer
     tokenizer = get_tokenizer(config)
 
     evaluator = Evaluator()
@@ -710,8 +710,8 @@ def _get_mode(data, mode):
 
 @hydra.main(version_base=None, config_path=str(REPO_ROOT / "cfgs"), config_name="1031_midgpt.yaml")
 def evaluate_scgen(config):
-    from infgen.utils.safety_critical_generation_utils import _overwrite_data_given_agents_not_ooi, get_ego_edge_points, get_ego_edge_points_old, post_process_adv_traj, _overwrite_data_given_agents_ooi, _overwrite_data_given_agents, set_adv, run_backward_prediction_with_teacher_forcing
-    from infgen.utils import utils
+    from bmt.utils.safety_critical_generation_utils import _overwrite_data_given_agents_not_ooi, get_ego_edge_points, get_ego_edge_points_old, post_process_adv_traj, _overwrite_data_given_agents_ooi, _overwrite_data_given_agents, set_adv, run_backward_prediction_with_teacher_forcing
+    from bmt.utils import utils
     import copy
     path = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"
     omegaconf.OmegaConf.set_struct(config, False)
@@ -726,7 +726,7 @@ def evaluate_scgen(config):
     import torch
     model = model.to("cuda")
     device = model.device
-    from infgen.tokenization import get_tokenizer
+    from bmt.tokenization import get_tokenizer
     tokenizer = get_tokenizer(config)
 
     evaluator = Evaluator()
@@ -819,7 +819,7 @@ def convert_tensors_to_double(data_dict, double_keys):
 @hydra.main(version_base=None, config_path=str(REPO_ROOT / "cfgs"), config_name="1031_midgpt.yaml")
 def debug_eval_CAT(config):
     import os
-    from infgen.dataset.scenarionet_utils import overwrite_gt_to_pred_field
+    from bmt.dataset.scenarionet_utils import overwrite_gt_to_pred_field
     omegaconf.OmegaConf.set_struct(config, False)
     config.PREPROCESSING.keep_all_data = True
     config.pretrain = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"

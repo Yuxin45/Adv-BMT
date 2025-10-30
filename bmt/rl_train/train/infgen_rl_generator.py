@@ -3,8 +3,8 @@ import copy
 import numpy as np
 import torch
 
-from infgen import utils
-from infgen.tokenization import get_tokenizer
+from bmt import utils
+from bmt.tokenization import get_tokenizer
 
 
 def _convert_to_SD_types(data_dict_agent_type):
@@ -211,7 +211,7 @@ class InfgenRLScenarioGenerator:
     def __init__(self, model_name):
 
         from hydra import initialize_config_dir, compose
-        from infgen.utils import REPO_ROOT
+        from bmt.utils import REPO_ROOT
 
         if not model_name.endswith(".yaml"):
             model_name += ".yaml"
@@ -262,7 +262,7 @@ class InfgenRLScenarioGenerator:
 
     def GPT_AR(self, input_dict):
         if self.infgen_generator is None:
-            from infgen.infer.infgen_generator import InfGenGenerator
+            from bmt.infer.infgen_generator import InfGenGenerator
             self.infgen_generator = InfGenGenerator(
                 model=self.pl_model.model,
                 device=self.pl_model.device,
@@ -352,7 +352,7 @@ class InfgenRLScenarioGenerator:
             overwritten_sd = overwrite_new_sdc_traj_to_SD(copy.deepcopy(scenario_data), sdc_traj, sdc_heading, sdc_vel,
                                                         track_length=track_length)  # need to overwrite mask as well
 
-        from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+        from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
         data_dict = preprocess_scenario_description_for_motionlm(
             scenario=overwritten_sd,
             config=self.config,
@@ -397,7 +397,7 @@ class InfgenRLScenarioGenerator:
 
 if __name__ == '__main__':
     g = InfgenRLScenarioGenerator(model_name="infgen-base-large")
-    from infgen.utils import REPO_ROOT
+    from bmt.utils import REPO_ROOT
     import pathlib
     import pickle
 

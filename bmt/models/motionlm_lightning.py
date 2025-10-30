@@ -5,10 +5,10 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from omegaconf import OmegaConf
-from infgen.models.motionlm import MotionLM
-from infgen.tokenization import get_tokenizer
-from infgen.utils import lr_schedule
-from infgen.utils import utils
+from bmt.models.motionlm import MotionLM
+from bmt.tokenization import get_tokenizer
+from bmt.utils import lr_schedule
+from bmt.utils import utils
 
 logger = logging.getLogger(__file__)
 
@@ -66,7 +66,7 @@ class MotionLMLightning(pl.LightningModule):
             raise ValueError(f"Unknown model name: {config.MODEL.NAME}")
 
         if config.EVALUATION.NAME in ["waymo_motion_prediction", "waymo_prediction", "womd"]:
-            from infgen.eval.waymo_motion_prediction_evaluator import WaymoMotionPredictionEvaluator
+            from bmt.eval.waymo_motion_prediction_evaluator import WaymoMotionPredictionEvaluator
             self.evaluator = WaymoMotionPredictionEvaluator(config=config)
         elif config.EVALUATION.NAME in ["wosac2023", "wosac2024"]:
 
@@ -79,10 +79,10 @@ class MotionLMLightning(pl.LightningModule):
             assert config.DATA.SD_PASSTHROUGH
             # config.DATA.SD_PASSTHROUGH = True
 
-            from infgen.eval.waymo_sim_agent_evaluator import WaymoSimAgentEvaluator
+            from bmt.eval.waymo_sim_agent_evaluator import WaymoSimAgentEvaluator
             self.evaluator = WaymoSimAgentEvaluator(config=config)
         elif config.EVALUATION.NAME in ["lmdb"]:
-            from infgen.eval.lmdb_evaluator import LMDBEvaluator
+            from bmt.eval.lmdb_evaluator import LMDBEvaluator
             self.evaluator = LMDBEvaluator(config=config)
         else:
             raise ValueError(f"Unknown evaluation name: {config.EVALUATION.NAME}")

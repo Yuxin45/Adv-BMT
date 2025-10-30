@@ -1,14 +1,14 @@
 import torch
 import torch.nn as nn
 
-from infgen.dataset import constants
-from infgen.models import relation
-from infgen.models.layers import polyline_encoder, common_layers, fourier_embedding
-from infgen.models.layers.gpt_encoder_layer import SelfAttTransformerEncoder, SelfAttTransformerEncoderLayer
-from infgen.models.motion_decoder_gpt import get_edge_info
-from infgen.models.ops.collapse_time import collapse_time
-from infgen.models.scene_encoder import find_last_valid, mode_agent_id
-from infgen.utils import utils
+from bmt.dataset import constants
+from bmt.models import relation
+from bmt.models.layers import polyline_encoder, common_layers, fourier_embedding
+from bmt.models.layers.gpt_encoder_layer import SelfAttTransformerEncoder, SelfAttTransformerEncoderLayer
+from bmt.models.motion_decoder_gpt import get_edge_info
+from bmt.models.ops.collapse_time import collapse_time
+from bmt.models.scene_encoder import find_last_valid, mode_agent_id
+from bmt.utils import utils
 
 
 class SceneEncoderGPT(nn.Module):

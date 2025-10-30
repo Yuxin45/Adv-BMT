@@ -9,12 +9,12 @@ import numpy as np
 import torch
 from omegaconf import OmegaConf
 
-from infgen.dataset.preprocess_action_label import TurnAction
-from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
-from infgen.tokenization import get_tokenizer
-from infgen.utils import REPO_ROOT
-from infgen.utils import utils
-from infgen.gradio_ui.plot_video import plot_gt_video, plot_pred_video
+from bmt.dataset.preprocess_action_label import TurnAction
+from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+from bmt.tokenization import get_tokenizer
+from bmt.utils import REPO_ROOT
+from bmt.utils import utils
+from bmt.gradio_ui.plot_video import plot_gt_video, plot_pred_video
 
 os.environ['GRADIO_TEMP_DIR'] = str(REPO_ROOT / "gradio_tmp")
 
@@ -66,7 +66,7 @@ state = State()
 
 
 def ckpt_callback(ckpt_path):
-    from infgen.models.motionlm_lightning import MotionLMLightning
+    from bmt.models.motionlm_lightning import MotionLMLightning
 
     msg = "Failed!"
     temperature = 1.0

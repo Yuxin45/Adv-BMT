@@ -9,8 +9,8 @@ import seaborn as sns
 from matplotlib.animation import FFMpegWriter
 from matplotlib.patches import Polygon, Circle, Rectangle
 
-from infgen.dataset.dataset import InfgenDataset
-from infgen.utils import REPO_ROOT
+from bmt.dataset.dataset import InfgenDataset
+from bmt.utils import REPO_ROOT
 import torch
 import copy
 import pdb

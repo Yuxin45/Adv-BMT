@@ -13,7 +13,7 @@ https://github.com/waymo-research/waymo-open-dataset.git
 # Load Scenario Description for passthrough
 import pathlib
 from collections import defaultdict
-from infgen.utils import utils
+from bmt.utils import utils
 import numpy as np
 import tensorflow as tf
 from google.protobuf import text_format
@@ -31,7 +31,7 @@ except ModuleNotFoundError:
     submission_specs = None
     metrics = None
 
-from infgen.utils import wrap_to_pi
+from bmt.utils import wrap_to_pi
 
 # Set memory growth on all gpus.
 # all_gpus = tf.config.experimental.list_physical_devices('GPU')

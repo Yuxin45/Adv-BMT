@@ -9,8 +9,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from infgen.utils import rotate, wrap_to_pi
-from infgen.utils import utils
+from bmt.utils import rotate, wrap_to_pi
+from bmt.utils import utils
 
 from scipy.interpolate import CubicSpline
 FOLDER = pathlib.Path(__file__).resolve().parent
@@ -1785,7 +1785,7 @@ class DeltaTokenizer(DeltaDeltaTokenizer):
     def __init__(self, config):
         BaseTokenizer.__init__(self, config)
 
-        from infgen.utils import REPO_ROOT
+        from bmt.utils import REPO_ROOT
         # import numpy as np
         import pickle
 

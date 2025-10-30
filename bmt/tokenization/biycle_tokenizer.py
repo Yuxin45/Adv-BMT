@@ -1,9 +1,9 @@
 import numpy as np
 import torch
 
-from infgen.tokenization.motion_tokenizers import DeltaDeltaTokenizer, get_relative_velocity, START_ACTION, END_ACTION, BaseTokenizer, interpolate, interpolate_heading
-from infgen.utils import rotate
-from infgen.utils import utils
+from bmt.tokenization.motion_tokenizers import DeltaDeltaTokenizer, get_relative_velocity, START_ACTION, END_ACTION, BaseTokenizer, interpolate, interpolate_heading
+from bmt.utils import rotate
+from bmt.utils import utils
 
 
 def get_relative_velocity(vel, heading):

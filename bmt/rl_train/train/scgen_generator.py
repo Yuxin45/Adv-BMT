@@ -1,21 +1,21 @@
 from omegaconf import OmegaConf
 import hydra
-from infgen.utils import utils
+from bmt.utils import utils
 import omegaconf
-from infgen.utils import REPO_ROOT
+from bmt.utils import REPO_ROOT
 import easydict
 import copy
 from safety_critical_scenario_generation import set_adv
 from collections import deque
 import numpy as np
-from infgen.utils.utils import numpy_to_torch
+from bmt.utils.utils import numpy_to_torch
 import torch
 import subprocess
 import pickle
 import os
 import copy
-from infgen.dataset.scenarionet_utils import overwrite_to_scenario_description
-from infgen.gradio_ui.plot import plot_pred, plot_gt
+from bmt.dataset.scenarionet_utils import overwrite_to_scenario_description
+from bmt.gradio_ui.plot import plot_pred, plot_gt
 
 SCGEN_OUTPUT_DIR = "/bigdata/yuxin/0426_closed_loop_SCGEN_backward_scenarios"
 
@@ -389,7 +389,7 @@ def _to_dict(d):
 
 
 def load_config(config_name):
-    from infgen.utils.config import global_config, cfg_from_yaml_file
+    from bmt.utils.config import global_config, cfg_from_yaml_file
     default_config = OmegaConf.load(REPO_ROOT / f"cfgs/motion_default.yaml")
     config = OmegaConf.load(REPO_ROOT / f"cfgs/{config_name}.yaml")
     omegaconf.OmegaConf.set_struct(config, False)
@@ -472,7 +472,7 @@ class SCGEN_Generator:
     def __init__(self, model_name='0202_midgpt', TF_mode="all_TF_except_adv", ckpt_path="../../ckpt/last.ckpt"):
 
         from hydra import initialize_config_dir, compose
-        from infgen.utils import REPO_ROOT
+        from bmt.utils import REPO_ROOT
 
         # if not model_name.endswith(".yaml"):
         #     model_name += ".yaml"
@@ -491,7 +491,7 @@ class SCGEN_Generator:
         # Set the maximum number of agents, so we can avoid making prediction for those static agents, thus saving GPU.
         config.PREPROCESSING.MAX_AGENTS = 64
 
-        from infgen.tokenization import get_tokenizer
+        from bmt.tokenization import get_tokenizer
         # tokenizer = get_tokenizer(config)
         tokenizer = pl_model.model.tokenizer
 
@@ -680,7 +680,7 @@ class SCGEN_Generator:
             
 
 
-        from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+        from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
         original_data_dict = preprocess_scenario_description_for_motionlm(
             scenario=overwritten_sd,
             config=self.config,
@@ -736,7 +736,7 @@ class SCGEN_Generator:
         assert scenario_data is not None
         sid = scenario_data["id"]
         
-        from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+        from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
 
         if is_sdc_parking(scenario_data):
             return None

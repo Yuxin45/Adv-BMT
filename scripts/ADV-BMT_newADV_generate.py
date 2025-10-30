@@ -6,14 +6,14 @@ import pickle
 import hydra
 import numpy as np
 import tqdm
-from infgen.dataset.dataset import InfgenDataset
-from infgen.utils import REPO_ROOT
-from infgen.utils import utils
+from bmt.dataset.dataset import InfgenDataset
+from bmt.utils import REPO_ROOT
+from bmt.utils import utils
 from omegaconf import OmegaConf
 import torch
 import copy
-from infgen.utils import cal_polygon_contour
-from infgen.gradio_ui.plot import plot_pred, plot_gt
+from bmt.utils import cal_polygon_contour
+from bmt.gradio_ui.plot import plot_pred, plot_gt
 import os
 import time as timer
 from metadrive.scenario.scenario_description import ScenarioDescription as SD, MetaDriveType

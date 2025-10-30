@@ -1,8 +1,8 @@
 import torch.nn as nn
 
-from infgen import utils
-from infgen.dataset import constants
-from infgen.models.layers import common_layers
+from bmt import utils
+from bmt.dataset import constants
+from bmt.models.layers import common_layers
 
 
 class InitializerPredictor(nn.Module):

@@ -12,8 +12,8 @@ from torch.nn import init
 from torch.nn.modules.transformer import Dropout, Linear
 from torch.nn.parameter import Parameter
 
-from infgen.models import relation
-from infgen.models.layers.multi_head_attention import MultiheadAttention
+from bmt.models import relation
+from bmt.models.layers.multi_head_attention import MultiheadAttention
 
 _shape_t = Union[int, List[int], Size]
 
