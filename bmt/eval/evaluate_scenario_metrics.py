@@ -51,7 +51,6 @@ def _overwrite_datadict_all_agents(source_data_dict, dest_data_dict, ooi=None, T
         agent_velocity = new_data_dict["decoder/agent_velocity"]
 
     for id in ooi:  # overwrite all agents
-        # import pdb; pdb.set_trace()
         if is_tensor:
             traj = source_data_dict["decoder/reconstructed_position"][:, :91, id].clone()
             traj_mask = source_data_dict["decoder/reconstructed_valid_mask"][:, :91, id].clone()
@@ -112,7 +111,6 @@ def choose_nearest_adv(data_dict):
     if adv_closes_step < 5:
         adv_closes_step = 5
 
-    # import pdb; pdb.set_trace()
 
     # now get adv last valid step's information
     adv_pos = data_dict["decoder/agent_position"][adv_closes_step, adv_id, :2]

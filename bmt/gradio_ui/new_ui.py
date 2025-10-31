@@ -304,7 +304,6 @@ def on_generate_button_click(
     # state.config.TOKENIZATION.MIN_SPEED = MIN_SPEED
     OmegaConf.set_struct(config, True)
 
-    # import pdb; pdb.set_trace()
 
 
     print("draw_backward_prediction", draw_backward_prediction)

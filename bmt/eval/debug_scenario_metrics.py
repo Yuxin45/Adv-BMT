@@ -249,7 +249,6 @@ class Evaluator:
         # FDD
         with timer("FDD"):
             # there doesn't appear to be an easy way to do this with cartesian product
-            # import pdb; pdb.set_trace()
             cur_FDD = None
             for i, j in itertools.product(range(K), range(K)):
                 final_dist = torch.where(
@@ -348,7 +347,6 @@ class Evaluator:
                 )
                 return collisions, collision_rate
 
-            # import pdb; pdb.set_trace()
             pred_veh_collisions, veh_cr = calc_collision_rate(list(range(N)), gt_data_dict["decoder/labeled_agent_id"])
             self.veh_coll += veh_cr
 
@@ -851,7 +849,6 @@ def debug_eval_CAT(config):
         if count >= num_scenario:
             break
         input_dict = copy.deepcopy(raw_data_dict)
-        # import pdb; pdb.set_trace()
         sid = input_dict["metadata/scenario_id"]
         cat_file_name = f"sd_reconstructed_v0_{sid}.pkl"
         if cat_file_name not in all_cat_scenarios:

@@ -150,7 +150,6 @@ def get_acce_action_from_trajectory_batch(batch_trajs, mask, ooi=None, dt=0.1):
 
 
 def get_safety_action_from_sdc_adv(data_dict, adv_id):
-    # import pdb; pdb.set_trace()
     sdc_id = data_dict["decoder/sdc_index"]
 
     T = data_dict["decoder/reconstructed_position"].shape[0]

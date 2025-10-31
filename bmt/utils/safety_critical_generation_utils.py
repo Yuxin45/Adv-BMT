@@ -67,7 +67,6 @@ def create_new_adv(data_dict):
 
     # we can try different headings and see which one is more realistic
 
-    # import pdb; pdb.set_trace()
     adv_heading[last_valid_step] = np.random.normal(loc=0.0, scale=np.deg2rad(360), size=1)
     # + np.random.normal(loc=0.0, scale=0.5, size=1)
 

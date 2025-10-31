@@ -467,7 +467,7 @@ def is_sdc_parking(scenario_description):
         return False
 
 class SCGEN_Generator:
-    def __init__(self, model_name='0202_midgpt', TF_mode="all_TF_except_adv", ckpt_path="../../ckpt/last.ckpt"):
+    def __init__(self, model_name='0202_midgpt', TF_mode="all_TF_except_adv", ckpt_path="bmt/ckpt/last.ckpt"):
 
         from hydra import initialize_config_dir, compose
         from bmt.utils import REPO_ROOT
@@ -784,8 +784,6 @@ class SCGEN_Generator:
         output_dict_mode_pred = transform_to_global_coordinate(output_dict_mode) # transform back to global coordinate, since we will overwrite the original SD
 
         new_SD = overwrite_to_scenario_description_new_agent(output_dict_mode=output_dict_mode_pred, original_SD=copy.deepcopy(scenario_data), adv_id=adv_id, from_GT=False, ooi=[adv_id])
-
-        import pdb; pdb.set_trace()
 
         return new_SD # return modified scenario description
         

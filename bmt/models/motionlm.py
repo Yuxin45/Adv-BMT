@@ -9,7 +9,7 @@ from bmt.models.layers import common_layers
 from bmt.models.motion_decoder import MotionDecoder
 from bmt.models.motion_decoder_gpt import MotionDecoderGPT
 from bmt.models.scene_encoder import SceneEncoder
-from bmt.tokenization import get_tokenizer, SPECIAL_VALID, SPECIAL_START, END_ACTION, START_ACTION
+from bmt.tokenization import get_tokenizer, END_ACTION, START_ACTION
 from bmt.utils import calculate_trajectory_probabilities, utils
 
 import numpy as np
@@ -1378,7 +1378,6 @@ class MotionLM(nn.Module):
             # TODO: put back the following code
             # if decode_step == autoregressive_start_step:
             #     cur_forward_step = T_chunks - decode_step - 1
-            #     import pdb; pdb.set_trace()
             #     assert (
             #         current_valid_mask == agent_valid_mask[:, cur_forward_step:cur_forward_step + 1]
             #     ).all()
