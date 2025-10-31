@@ -5,7 +5,7 @@ import omegaconf
 from bmt.utils import REPO_ROOT
 import easydict
 import copy
-from safety_critical_scenario_generation import set_adv
+from bmt.safety_critical_scenario_generation import set_adv
 from collections import deque
 import numpy as np
 from bmt.utils.utils import numpy_to_torch
