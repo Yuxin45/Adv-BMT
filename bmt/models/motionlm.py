@@ -135,8 +135,7 @@ class MotionLM(nn.Module):
 
             if self.config.USE_MOTION:
                 # TODO: For simplicity, remove motion for now if we want to train TG.
-                else:
-                    self.motion_decoder = MotionDecoderGPT(config=self.config)
+                self.motion_decoder = MotionDecoderGPT(config=self.config)
 
             assert self.config.USE_MOTION
 
@@ -617,19 +616,6 @@ class MotionLM(nn.Module):
             input_action_valid_mask_list.append(current_valid_mask.clone())
 
             assert not (current_input_action == END_ACTION).any()
-
-            use_mcts = self.config.MCTS.USE_MCTS
-            if use_mcts:
-                from infgen.mcts import mcts_search
-                selected_action, mcts_info = mcts_search(
-                    self,
-                    data_dict,
-                    self.config,
-                    start_steps=decode_step,
-                    num_search_steps=self.config.MCTS.MCTS_DEPTH,  # D
-                    num_search_width=self.config.MCTS.MCTS_WIDTH,  # W
-                    bin_centers=bin_centers,
-                )
 
             # Decode motion tokens
             data_dict = self.decode_motion(data_dict, use_cache=use_cache)

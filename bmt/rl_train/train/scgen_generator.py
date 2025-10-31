@@ -17,8 +17,6 @@ import copy
 from bmt.dataset.scenarionet_utils import overwrite_to_scenario_description
 from bmt.gradio_ui.plot import plot_pred, plot_gt
 
-SCGEN_OUTPUT_DIR = "/bigdata/yuxin/0426_closed_loop_SCGEN_backward_scenarios"
-
 def overwrite_to_scenario_description_new_agent(output_dict_mode, original_SD, adv_id, from_GT, ooi=None):
     """
     Overwrite from GT field in data_dict to tracks in SD for OOI agents.
@@ -834,16 +832,11 @@ if __name__ == "__main__":
     env.reset()
 
     generator.before_episode(env)
-    # print(env.current_seed)
 
     for i in range(100): # just test for 10 steps
         o, r, tm, tc, info = env.step([0.0, 0.0])
         generator.log_AV_history()
 
-    # print("new ego traj:")
-    # print(generator.ego_traj)
-    # print("new ego heading:")
-    # print(generator.ego_heading)
 
     if tm or tc:
         generator.after_episode(update_AV_traj=True)

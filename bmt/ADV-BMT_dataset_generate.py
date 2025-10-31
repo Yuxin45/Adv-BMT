@@ -29,7 +29,7 @@ def main():
     num_modes = args.num_mode
     num_scenarios = args.num_scenario
     save_dir = args.save_dir
-    TF_mode = "all_TF_except_adv"
+    TF_mode = args.TF_mode
 
     all_scenario_files = get_filenames(args.dir)
 
