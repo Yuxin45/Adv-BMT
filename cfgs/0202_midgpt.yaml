@@ -25,7 +25,7 @@ eval_backward_model: False
 
 epochs: 30
 wandb: True
-log_dir: /bigdata/zhenghao/infgen
+log_dir: ./logs/
 
 REMOVE_AGENT_FROM_SCENE_ENCODER: True  # <<<
 
