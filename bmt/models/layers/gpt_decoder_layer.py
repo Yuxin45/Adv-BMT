@@ -7,9 +7,9 @@ from torch.nn import Module
 from torch_geometric.nn import MessagePassing
 from torch_geometric.utils import softmax
 
-from infgen.models.layers import common_layers
-from infgen.models.layers.decoder_layer import _get_clones
-from infgen.utils import utils
+from bmt.models.layers import common_layers
+from bmt.models.layers.decoder_layer import _get_clones
+from bmt.utils import utils
 
 # from torch.nn.attention.flex_attention import (
 #     _DEFAULT_SPARSE_BLOCK_SIZE,

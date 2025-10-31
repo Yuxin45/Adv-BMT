@@ -1,5 +1,5 @@
-from infgen.tokenization.motion_tokenizers import DeltaDeltaTokenizer, START_ACTION, END_ACTION, DeltaTokenizer
-from infgen.tokenization.biycle_tokenizer import BicycleModelTokenizer, BicycleModelInterpolatedTokenizer, BicycleModelTokenizerNoAVG, BicycleModelTokenizerFixed0124
+from bmt.tokenization.motion_tokenizers import DeltaDeltaTokenizer, START_ACTION, END_ACTION, DeltaTokenizer
+from bmt.tokenization.biycle_tokenizer import BicycleModelTokenizer, BicycleModelInterpolatedTokenizer, BicycleModelTokenizerNoAVG, BicycleModelTokenizerFixed0124
 
 
 def get_tokenizer(config):

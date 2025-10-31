@@ -4,13 +4,13 @@ import logging
 import torch
 import torch.nn as nn
 
-from infgen.models.gpt_scene_encoder import SceneEncoderGPT
-from infgen.models.layers import common_layers
-from infgen.models.motion_decoder import MotionDecoder
-from infgen.models.motion_decoder_gpt import MotionDecoderGPT
-from infgen.models.scene_encoder import SceneEncoder
-from infgen.tokenization import get_tokenizer, SPECIAL_VALID, SPECIAL_START, END_ACTION, START_ACTION
-from infgen.utils import calculate_trajectory_probabilities, utils
+from bmt.models.gpt_scene_encoder import SceneEncoderGPT
+from bmt.models.layers import common_layers
+from bmt.models.motion_decoder import MotionDecoder
+from bmt.models.motion_decoder_gpt import MotionDecoderGPT
+from bmt.models.scene_encoder import SceneEncoder
+from bmt.tokenization import get_tokenizer, END_ACTION, START_ACTION
+from bmt.utils import calculate_trajectory_probabilities, utils
 
 import numpy as np
 
@@ -135,8 +135,7 @@ class MotionLM(nn.Module):
 
             if self.config.USE_MOTION:
                 # TODO: For simplicity, remove motion for now if we want to train TG.
-                else:
-                    self.motion_decoder = MotionDecoderGPT(config=self.config)
+                self.motion_decoder = MotionDecoderGPT(config=self.config)
 
             assert self.config.USE_MOTION
 
@@ -306,19 +305,6 @@ class MotionLM(nn.Module):
             input_action_valid_mask_list.append(current_valid_mask.clone())
 
             assert not (current_input_action == END_ACTION).any()
-
-            use_mcts = self.config.MCTS.USE_MCTS
-            if use_mcts:
-                from infgen.mcts import mcts_search
-                selected_action, mcts_info = mcts_search(
-                    self,
-                    data_dict,
-                    self.config,
-                    start_steps=decode_step,
-                    num_search_steps=self.config.MCTS.MCTS_DEPTH,  # D
-                    num_search_width=self.config.MCTS.MCTS_WIDTH,  # W
-                    bin_centers=bin_centers,
-                )
 
             # Decode motion tokens
             data_dict = self.decode_motion(data_dict, use_cache=use_cache)
@@ -617,19 +603,6 @@ class MotionLM(nn.Module):
             input_action_valid_mask_list.append(current_valid_mask.clone())
 
             assert not (current_input_action == END_ACTION).any()
-
-            use_mcts = self.config.MCTS.USE_MCTS
-            if use_mcts:
-                from infgen.mcts import mcts_search
-                selected_action, mcts_info = mcts_search(
-                    self,
-                    data_dict,
-                    self.config,
-                    start_steps=decode_step,
-                    num_search_steps=self.config.MCTS.MCTS_DEPTH,  # D
-                    num_search_width=self.config.MCTS.MCTS_WIDTH,  # W
-                    bin_centers=bin_centers,
-                )
 
             # Decode motion tokens
             data_dict = self.decode_motion(data_dict, use_cache=use_cache)
@@ -1405,7 +1378,6 @@ class MotionLM(nn.Module):
             # TODO: put back the following code
             # if decode_step == autoregressive_start_step:
             #     cur_forward_step = T_chunks - decode_step - 1
-            #     import pdb; pdb.set_trace()
             #     assert (
             #         current_valid_mask == agent_valid_mask[:, cur_forward_step:cur_forward_step + 1]
             #     ).all()

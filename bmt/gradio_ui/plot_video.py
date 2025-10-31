@@ -2,8 +2,8 @@ import copy
 import tempfile
 import pickle
 import os
-from infgen.utils import REPO_ROOT
-from infgen.gradio_ui.metadrive_render import render
+from bmt.utils import REPO_ROOT
+from bmt.gradio_ui.metadrive_render import render
 import subprocess
 
 

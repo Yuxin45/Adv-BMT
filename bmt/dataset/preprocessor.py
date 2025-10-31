@@ -8,10 +8,10 @@ import pickle
 import numpy as np
 from metadrive.scenario.scenario_description import ScenarioDescription as SD, MetaDriveType
 
-from infgen import utils
-from infgen.dataset import constants
-from infgen.dataset.preprocess_action_label import prepare_action_label, prepare_safety_label
-from infgen.tokenization import get_tokenizer
+from bmt import utils
+from bmt.dataset import constants
+from bmt.dataset.preprocess_action_label import prepare_action_label, prepare_safety_label
+from bmt.tokenization import get_tokenizer
 
 logger = logging.getLogger(__file__)
 

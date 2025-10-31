@@ -1,11 +1,11 @@
 import torch
 import torch.nn as nn
 
-from infgen.dataset.preprocess_action_label import TurnAction, AccelerationAction, SafetyAction
-from infgen.models.layers import common_layers, position_encoding_utils
-from infgen.models.layers.decoder_layer import TransformerDecoder, TransformerDecoderLayer
-from infgen.tokenization import get_action_dim, get_tokenizer, START_ACTION
-from infgen.utils import unwrap
+from bmt.dataset.preprocess_action_label import TurnAction, AccelerationAction, SafetyAction
+from bmt.models.layers import common_layers, position_encoding_utils
+from bmt.models.layers.decoder_layer import TransformerDecoder, TransformerDecoderLayer
+from bmt.tokenization import get_action_dim, get_tokenizer, START_ACTION
+from bmt.utils import unwrap
 
 
 def create_causal_mask(T, N, is_valid_mask=False):
@@ -258,8 +258,8 @@ class MotionDecoder(nn.Module):
 
 
 if __name__ == '__main__':
-    from infgen.utils import debug_tools
-    from infgen.models.scene_encoder import SceneEncoder
+    from bmt.utils import debug_tools
+    from bmt.models.scene_encoder import SceneEncoder
 
     config = debug_tools.get_debug_config()
     enc = SceneEncoder(config)

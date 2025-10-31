@@ -3,7 +3,7 @@ import os
 import time
 from metadrive.policy.replay_policy import ReplayEgoCarPolicy
 from advgen.adv_generator_cat import NewAdvGenerator
-from infgen.rl_train.train.scgen_generator import SCGEN_Generator
+from bmt.rl_train.train.scgen_generator import SCGEN_Generator
 from metadrive.scenario.utils import get_number_of_scenarios
 import pickle
 import copy

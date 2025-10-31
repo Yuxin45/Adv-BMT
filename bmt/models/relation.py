@@ -2,9 +2,9 @@ import numpy as np
 import torch
 
 # from torch.nn.modules.transformer import TransformerEncoderLayer as NativeTransformerEncoderLayer
-from infgen.dataset import constants
-from infgen.models.layers import position_encoding_utils
-from infgen.utils import rotate, utils
+from bmt.dataset import constants
+from bmt.models.layers import position_encoding_utils
+from bmt.utils import rotate, utils
 
 # def pairwise_mask(mask):
 #     """

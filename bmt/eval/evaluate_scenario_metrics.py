@@ -2,21 +2,21 @@ import os
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 import pickle
-from infgen.dataset.scenarionet_utils import overwrite_gt_to_pred_field, merge_preds_along_mode_dim
+from bmt.dataset.scenarionet_utils import overwrite_gt_to_pred_field, merge_preds_along_mode_dim
 import copy
 import hydra
 import numpy as np
 import omegaconf
 
-from infgen.utils import utils
-from infgen.dataset.dataset import InfgenDataset
-from infgen.utils import REPO_ROOT
+from bmt.utils import utils
+from bmt.dataset.dataset import InfgenDataset
+from bmt.utils import REPO_ROOT
 import torch
 
 from collections.abc import Iterable
-from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
-from infgen.eval.scenario_evaluator import Evaluator
-from infgen.utils.utils import numpy_to_torch
+from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+from bmt.eval.scenario_evaluator import Evaluator
+from bmt.utils.utils import numpy_to_torch
 from metadrive.scenario.utils import read_dataset_summary
 
 def _get_mode(output_dict, mode, num_modes):
@@ -51,7 +51,6 @@ def _overwrite_datadict_all_agents(source_data_dict, dest_data_dict, ooi=None, T
         agent_velocity = new_data_dict["decoder/agent_velocity"]
 
     for id in ooi:  # overwrite all agents
-        # import pdb; pdb.set_trace()
         if is_tensor:
             traj = source_data_dict["decoder/reconstructed_position"][:, :91, id].clone()
             traj_mask = source_data_dict["decoder/reconstructed_valid_mask"][:, :91, id].clone()
@@ -112,7 +111,6 @@ def choose_nearest_adv(data_dict):
     if adv_closes_step < 5:
         adv_closes_step = 5
 
-    # import pdb; pdb.set_trace()
 
     # now get adv last valid step's information
     adv_pos = data_dict["decoder/agent_position"][adv_closes_step, adv_id, :2]
@@ -876,7 +874,7 @@ class EvaluationLightningModule(pl.LightningModule):
         ooi_ind = output_data["decoder/agent_id"][0]  # ooi is all agent
         assert 0 in ooi_ind, "SDC agent should be in the output data."
 
-        from infgen.dataset.preprocess_action_label import get_2D_collision_labels
+        from bmt.dataset.preprocess_action_label import get_2D_collision_labels
 
         output_data_all_modes = {
             k: (v.cpu().numpy() if isinstance(v, torch.Tensor) else v)
@@ -910,12 +908,12 @@ class EvaluationLightningModule(pl.LightningModule):
             output_dict = utils.torch_to_numpy(output_data)
             output_dict = _get_mode(output_dict, i, self.num_modes)
 
-            from infgen.gradio_ui.plot import create_animation_from_pred
+            from bmt.gradio_ui.plot import create_animation_from_pred
             # video_path = f"{self.eval_mode}_pred_{output_dict['metadata/scenario_id']}_{i}.mp4"
             # video_path = create_animation_from_pred(output_dict, save_path=video_path, dpi=100)
             # print("predict gif path:", video_path)
 
-            from infgen.gradio_ui.plot import plot_pred
+            from bmt.gradio_ui.plot import plot_pred
             # plot_pred(output_dict, save_path=f"{self.eval_mode}_pred_{output_dict['metadata/scenario_id']}_{i}.png")
 
             output_dict_mode = _get_mode(output_data_all_modes, i, num_modes=num_modes)

@@ -9,8 +9,8 @@ import torch.nn.functional as F
 from waymo_open_dataset.protos import map_pb2
 from waymo_open_dataset.wdl_limited.sim_agents_metrics import interaction_features
 from waymo_open_dataset.wdl_limited.sim_agents_metrics import map_metric_features
-from infgen.utils import wrap_to_pi, rotate
-from infgen.utils import utils
+from bmt.utils import wrap_to_pi, rotate
+from bmt.utils import utils
 
 def transform_to_global_coordinate(data_dict):
     assert "decoder/reconstructed_position" in data_dict
@@ -50,7 +50,7 @@ def detect_env_collision(contour_list1, mask1, lineString):
     return collision_detected
 
 
-from infgen.dataset.preprocess_action_label import cal_polygon_contour
+from bmt.dataset.preprocess_action_label import cal_polygon_contour
 from shapely.geometry import Polygon, LineString
 
 def customized_env_collision_rate(data_dict, track_agent_indices=None):
@@ -213,7 +213,7 @@ def conv(tensor, dtype=tf.float32):
 # conv = lambda tensor: tf.convert_to_tensor(tensor if type(tensor) == np.ndarray else tensor.cpu().numpy())
 rconv = lambda tf_tensor: torch.from_numpy(tf_tensor if type(tf_tensor) == np.ndarray else tf_tensor.numpy()
                                            ).to(torch.device("cuda"))
-from infgen.utils.utils import numpy_to_torch
+from bmt.utils.utils import numpy_to_torch
 
 
 def tf_to_torch(tf_tensor, device=None):

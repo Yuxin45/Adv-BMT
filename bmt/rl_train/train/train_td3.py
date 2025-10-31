@@ -24,8 +24,8 @@ from stable_baselines3.common.vec_env import SubprocVecEnv
 from stable_baselines3.common.vec_env import sync_envs_normalization
 from wandb.integration.sb3 import WandbCallback
 
-from infgen.rl_train.train.ScenarioOnlineEnvWrapper import ScenarioOnlineEnvWrapper
-from infgen.rl_train.train.customized_td3 import CustomizedTD3, Closed_Loop_TD3
+from bmt.rl_train.train.ScenarioOnlineEnvWrapper import ScenarioOnlineEnvWrapper
+from bmt.rl_train.train.customized_td3 import CustomizedTD3, Closed_Loop_TD3
 
 
 # from metadrive.engine.logger import set_log_level
@@ -382,11 +382,11 @@ def create_env(config, need_monitor=False, closed_loop=False, closed_loop_genera
                no_adaptive=False):
     if closed_loop:
         if closed_loop_generator == "SCGEN":
-            from infgen.rl_train.train.scgen_generator import SCGEN_Generator
+            from bmt.rl_train.train.scgen_generator import SCGEN_Generator
             generator = SCGEN_Generator()
 
         elif closed_loop_generator == "CAT":
-            from infgen.rl_train.train.cat_generator import CAT_Generator
+            from bmt.rl_train.train.cat_generator import CAT_Generator
             generator = CAT_Generator()
         else:
             raise ValueError("Unknown closed_loop_generator")

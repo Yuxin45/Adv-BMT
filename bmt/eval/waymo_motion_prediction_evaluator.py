@@ -16,10 +16,10 @@ try:
 except ModuleNotFoundError:
     motion_submission_pb2 = None
 import uuid
-from infgen.dataset.preprocessor import centralize_to_map_center
-from infgen.eval.waymo_eval import waymo_evaluation_optimized
-from infgen.tokenization import get_tokenizer
-from infgen.utils import wrap_to_pi, rotate
+from bmt.dataset.preprocessor import centralize_to_map_center
+from bmt.eval.waymo_eval import waymo_evaluation_optimized
+from bmt.tokenization import get_tokenizer
+from bmt.utils import wrap_to_pi, rotate
 
 
 def transform_to_global_coordinate(data_dict):

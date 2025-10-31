@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-from infgen.models.layers import common_layers
+from bmt.models.layers import common_layers
 
 
 class PointNetPolylineEncoder(nn.Module):

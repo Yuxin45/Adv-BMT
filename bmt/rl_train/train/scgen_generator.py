@@ -1,23 +1,21 @@
 from omegaconf import OmegaConf
 import hydra
-from infgen.utils import utils
+from bmt.utils import utils
 import omegaconf
-from infgen.utils import REPO_ROOT
+from bmt.utils import REPO_ROOT
 import easydict
 import copy
 from safety_critical_scenario_generation import set_adv
 from collections import deque
 import numpy as np
-from infgen.utils.utils import numpy_to_torch
+from bmt.utils.utils import numpy_to_torch
 import torch
 import subprocess
 import pickle
 import os
 import copy
-from infgen.dataset.scenarionet_utils import overwrite_to_scenario_description
-from infgen.gradio_ui.plot import plot_pred, plot_gt
-
-SCGEN_OUTPUT_DIR = "/bigdata/yuxin/0426_closed_loop_SCGEN_backward_scenarios"
+from bmt.dataset.scenarionet_utils import overwrite_to_scenario_description
+from bmt.gradio_ui.plot import plot_pred, plot_gt
 
 def overwrite_to_scenario_description_new_agent(output_dict_mode, original_SD, adv_id, from_GT, ooi=None):
     """
@@ -389,7 +387,7 @@ def _to_dict(d):
 
 
 def load_config(config_name):
-    from infgen.utils.config import global_config, cfg_from_yaml_file
+    from bmt.utils.config import global_config, cfg_from_yaml_file
     default_config = OmegaConf.load(REPO_ROOT / f"cfgs/motion_default.yaml")
     config = OmegaConf.load(REPO_ROOT / f"cfgs/{config_name}.yaml")
     omegaconf.OmegaConf.set_struct(config, False)
@@ -469,10 +467,10 @@ def is_sdc_parking(scenario_description):
         return False
 
 class SCGEN_Generator:
-    def __init__(self, model_name='0202_midgpt', TF_mode="all_TF_except_adv"):
+    def __init__(self, model_name='0202_midgpt', TF_mode="all_TF_except_adv", ckpt_path="bmt/ckpt/last.ckpt"):
 
         from hydra import initialize_config_dir, compose
-        from infgen.utils import REPO_ROOT
+        from bmt.utils import REPO_ROOT
 
         # if not model_name.endswith(".yaml"):
         #     model_name += ".yaml"
@@ -484,15 +482,14 @@ class SCGEN_Generator:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         assert torch.cuda.is_available(), "CUDA is not available, please check your environment."
 
-        CKPT_PATH = "/bigdata/zhenghao/infgen/lightning_logs/infgen/0205_MidGPT_V18_WBackward_2025-02-05/checkpoints" 
-        pl_model = utils.get_model(checkpoint_path=CKPT_PATH).eval()
+        pl_model = utils.get_model(checkpoint_path=ckpt_path).eval()
 
         config = pl_model.config
         config.PREPROCESSING.keep_all_data = True
         # Set the maximum number of agents, so we can avoid making prediction for those static agents, thus saving GPU.
         config.PREPROCESSING.MAX_AGENTS = 64
 
-        from infgen.tokenization import get_tokenizer
+        from bmt.tokenization import get_tokenizer
         # tokenizer = get_tokenizer(config)
         tokenizer = pl_model.model.tokenizer
 
@@ -681,7 +678,7 @@ class SCGEN_Generator:
             
 
 
-        from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+        from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
         original_data_dict = preprocess_scenario_description_for_motionlm(
             scenario=overwritten_sd,
             config=self.config,
@@ -737,7 +734,7 @@ class SCGEN_Generator:
         assert scenario_data is not None
         sid = scenario_data["id"]
         
-        from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+        from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
 
         if is_sdc_parking(scenario_data):
             return None
@@ -788,8 +785,6 @@ class SCGEN_Generator:
 
         new_SD = overwrite_to_scenario_description_new_agent(output_dict_mode=output_dict_mode_pred, original_SD=copy.deepcopy(scenario_data), adv_id=adv_id, from_GT=False, ooi=[adv_id])
 
-        import pdb; pdb.set_trace()
-
         return new_SD # return modified scenario description
         
         
@@ -835,16 +830,11 @@ if __name__ == "__main__":
     env.reset()
 
     generator.before_episode(env)
-    # print(env.current_seed)
 
     for i in range(100): # just test for 10 steps
         o, r, tm, tc, info = env.step([0.0, 0.0])
         generator.log_AV_history()
 
-    # print("new ego traj:")
-    # print(generator.ego_traj)
-    # print("new ego heading:")
-    # print(generator.ego_heading)
 
     if tm or tc:
         generator.after_episode(update_AV_traj=True)

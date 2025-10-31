@@ -16,14 +16,14 @@ from lightning.pytorch.callbacks import ModelCheckpoint
 from lightning.pytorch.loggers import WandbLogger, TensorBoardLogger
 from scipy.cluster.vq import kmeans2
 
-from infgen.dataset.datamodule import InfgenDataModule
-from infgen.models.layers import common_layers
+from bmt.dataset.datamodule import InfgenDataModule
+from bmt.models.layers import common_layers
 # from infgen.models.motionlm_lightning import MotionLMLightning
 # from infgen.tokenization.tokenizers import rotate
-from infgen.utils import global_config, cfg_from_yaml_file, REPO_ROOT, get_time_str
-from infgen.utils import lr_schedule
+from bmt.utils import global_config, cfg_from_yaml_file, REPO_ROOT, get_time_str
+from bmt.utils import lr_schedule
 # from infgen.tokenization.tokenizers import DeltaTokenizer, DeltaDeltaTokenizer
-from infgen.utils import rotate, unwrap, wrap_to_pi
+from bmt.utils import rotate, unwrap, wrap_to_pi
 
 
 def compute_3d_translation(data_dict, num_skipped_steps, offset=0):

@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
 
-from infgen.models.ops.knn import knn_utils
+from bmt.models.ops.knn import knn_utils
 
 
 def search_k_nearest_object_indices(

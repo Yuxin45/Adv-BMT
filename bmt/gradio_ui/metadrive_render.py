@@ -4,7 +4,7 @@ from metadrive.envs import ScenarioEnv
 import argparse
 import mediapy
 import numpy as np
-from infgen.utils import REPO_ROOT
+from bmt.utils import REPO_ROOT
 from itertools import count
 
 extra_args = dict(film_size=(900, 600), screen_size=(900, 600))

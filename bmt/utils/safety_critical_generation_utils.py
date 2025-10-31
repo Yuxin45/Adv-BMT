@@ -9,8 +9,8 @@ import seaborn as sns
 from matplotlib.animation import FFMpegWriter
 from matplotlib.patches import Polygon, Circle, Rectangle
 
-from infgen.dataset.dataset import InfgenDataset
-from infgen.utils import REPO_ROOT
+from bmt.dataset.dataset import InfgenDataset
+from bmt.utils import REPO_ROOT
 import torch
 import copy
 import pdb
@@ -67,7 +67,6 @@ def create_new_adv(data_dict):
 
     # we can try different headings and see which one is more realistic
 
-    # import pdb; pdb.set_trace()
     adv_heading[last_valid_step] = np.random.normal(loc=0.0, scale=np.deg2rad(360), size=1)
     # + np.random.normal(loc=0.0, scale=0.5, size=1)
 

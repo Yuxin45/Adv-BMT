@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 from torch.nn import Module
 
-from infgen.models.layers import common_layers
-from infgen.models.layers.decoder_layer import _get_clones
-from infgen.models.layers.gpt_decoder_layer import MultiheadAttentionLayer
+from bmt.models.layers import common_layers
+from bmt.models.layers.decoder_layer import _get_clones
+from bmt.models.layers.gpt_decoder_layer import MultiheadAttentionLayer
 
 
 class SelfAttTransformerEncoder(Module):

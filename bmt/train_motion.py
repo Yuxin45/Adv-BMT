@@ -12,10 +12,10 @@ from lightning.pytorch.loggers import TensorBoardLogger, WandbLogger
 from lightning.pytorch.utilities.model_summary import summarize
 from omegaconf import OmegaConf
 
-import infgen.utils as utils
-from infgen.dataset.datamodule import InfgenDataModule
-from infgen.models.motionlm_lightning import MotionLMLightning
-from infgen.utils import REPO_ROOT, get_time_str
+import bmt.utils as utils
+from bmt.dataset.datamodule import InfgenDataModule
+from bmt.models.motionlm_lightning import MotionLMLightning
+from bmt.utils import REPO_ROOT, get_time_str
 
 torch.set_float32_matmul_precision('high')
 
@@ -27,7 +27,7 @@ def main(config):
     config.ROOT_DIR = REPO_ROOT
     OmegaConf.set_struct(config, True)
 
-    from infgen.utils.config import global_config, cfg_from_yaml_file
+    from bmt.utils.config import global_config, cfg_from_yaml_file
     default_config = cfg_from_yaml_file(REPO_ROOT / "cfgs/motion_default.yaml", global_config)
 
     pl.seed_everything(config.seed)

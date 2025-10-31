@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from infgen.utils import wrap_to_pi, rotate
+from bmt.utils import wrap_to_pi, rotate
 import copy
 
 

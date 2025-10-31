@@ -73,7 +73,7 @@ python bmt/gradio_ui/new_ui.py --share
 ```
 
 
-#### Running Adv-BMT
+#### Generate Adv-BMT Scenarios
 
 We provide a script for running Adv-BMT.
 ```bash
@@ -82,7 +82,7 @@ bash scripts/ADV-BMT_dataset_generate.sh
 
 #### BMT Checkpoint and dataset
 We provide 500 WOMD scenarios and our BMT checkpoint reference purposes. [Link](https://drive.google.com/drive/folders/1vqoQMG7k5klwUqGdWK9BO6mukk4GhEUV?usp=sharing) 
-
+Please put your checkpoint under ./bmt/ckpt
 
 
 #### Evaluation

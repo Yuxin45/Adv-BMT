@@ -7,12 +7,12 @@ from pathlib import Path
 import lightning.pytorch as pl
 import torch
 import wandb
-from infgen.models.initializer_pl import InfgenInitializer
+from bmt.models.initializer_pl import InfgenInitializer
 from lightning.pytorch.callbacks import ModelCheckpoint
 from lightning.pytorch.loggers import WandbLogger, TensorBoardLogger
 
-from infgen.dataset.datamodule import InfgenDataModule
-from infgen.utils import global_config, cfg_from_list, cfg_from_yaml_file
+from bmt.dataset.datamodule import InfgenDataModule
+from bmt.utils import global_config, cfg_from_list, cfg_from_yaml_file
 
 # torch.backends.cudnn.benchmark = True
 torch.set_float32_matmul_precision("high")  # Enable TF32 matrix multiplication

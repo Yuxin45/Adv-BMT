@@ -10,8 +10,8 @@ import torch.nn.functional as F
 from scipy.cluster.vq import kmeans2
 from torch.nn.modules.transformer import TransformerEncoderLayer as NativeTransformerEncoderLayer
 
-from infgen.models.layers import common_layers
-from infgen.utils import lr_schedule, wrap_to_pi
+from bmt.models.layers import common_layers
+from bmt.utils import lr_schedule, wrap_to_pi
 
 # from infgen.tokenization.tokenizers import DeltaTokenizer, DeltaDeltaTokenizer
 

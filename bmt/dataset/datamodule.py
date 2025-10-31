@@ -4,7 +4,7 @@ This is a wrapper to wrap our dataset as a lightning datamodule.
 import lightning.pytorch as pl
 from torch.utils.data import DataLoader
 
-from infgen.dataset import dataset
+from bmt.dataset import dataset
 
 
 class InfgenDataModule(pl.LightningDataModule):

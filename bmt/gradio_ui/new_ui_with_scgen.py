@@ -11,11 +11,11 @@ import torch
 import uuid
 from omegaconf import OmegaConf
 
-from infgen.dataset.preprocess_action_label import TurnAction
-from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
-from infgen.gradio_ui.plot import plot_gt, plot_pred, create_animation_from_pred, create_animation_from_gt, plot_map
-from infgen.utils import REPO_ROOT
-from infgen.utils import utils
+from bmt.dataset.preprocess_action_label import TurnAction
+from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
+from bmt.gradio_ui.plot import plot_gt, plot_pred, create_animation_from_pred, create_animation_from_gt, plot_map
+from bmt.utils import REPO_ROOT
+from bmt.utils import utils
 
 
 os.environ['GRADIO_TEMP_DIR'] = str(REPO_ROOT / "gradio_tmp")
@@ -84,7 +84,7 @@ state = State()
 
 
 def ckpt_callback(ckpt_path):
-    from infgen.models.motionlm_lightning import MotionLMLightning
+    from bmt.models.motionlm_lightning import MotionLMLightning
 
     msg = "Failed!"
     temperature = 1.0
@@ -338,7 +338,7 @@ def on_generate_button_click(
             if draw_SCGen or draw_reactive_SCGen:
                 NUM_MODE = 1
                 # SCGen rollout
-                from infgen.utils.safety_critical_generation_utils import create_new_adv, _get_mode, _overwrite_datadict_all_agents
+                from bmt.utils.safety_critical_generation_utils import create_new_adv, _get_mode, _overwrite_datadict_all_agents
 
 
                 mode_count = 0

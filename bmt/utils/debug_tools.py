@@ -1,8 +1,8 @@
 import resource
 
-from infgen.dataset.datamodule import InfgenDataModule
-from infgen.utils.config import global_config, cfg_from_yaml_file
-from infgen.utils.utils import REPO_ROOT
+from bmt.dataset.datamodule import InfgenDataModule
+from bmt.utils.config import global_config, cfg_from_yaml_file
+from bmt.utils.utils import REPO_ROOT
 
 DEBUG_CONFIG_FILE = "cfgs/motion_debug.yaml"
 
