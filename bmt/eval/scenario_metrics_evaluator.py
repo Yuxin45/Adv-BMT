@@ -25,7 +25,6 @@ from waymo_open_dataset.wdl_limited.sim_agents_metrics import map_metric_feature
 import torch.nn.functional as F
 import itertools
 from waymo_open_dataset.protos import map_pb2
-from bmt.eval.waymo_motion_prediction_evaluator import _repeat_for_modes
 from collections.abc import Iterable
 import pdb
 from bmt.dataset.preprocessor import preprocess_scenario_description_for_motionlm
