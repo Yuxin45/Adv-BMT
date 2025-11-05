@@ -65,28 +65,6 @@ class MotionLMLightning(pl.LightningModule):
         else:
             raise ValueError(f"Unknown model name: {config.MODEL.NAME}")
 
-        if config.EVALUATION.NAME in ["waymo_motion_prediction", "waymo_prediction", "womd"]:
-            from bmt.eval.waymo_motion_prediction_evaluator import WaymoMotionPredictionEvaluator
-            self.evaluator = WaymoMotionPredictionEvaluator(config=config)
-        elif config.EVALUATION.NAME in ["wosac2023", "wosac2024"]:
-
-            # Let's overwrite some configs here
-            # Note that the WOSAC eval code will take care of tracks_to_predict
-            assert config.EVALUATION.PREDICT_ALL_AGENTS is True
-            # assert config.PREPROCESSING.ADD_SDC_TO_OBJECT_OF_INTEREST is True
-            assert config.EVALUATION.NUM_MODES == 32
-            # config.EVALUATION.MAXIMUM_BATCH_SIZE = min(config.EVALUATION.MAXIMUM_BATCH_SIZE, 16)
-            assert config.DATA.SD_PASSTHROUGH
-            # config.DATA.SD_PASSTHROUGH = True
-
-            from bmt.eval.waymo_sim_agent_evaluator import WaymoSimAgentEvaluator
-            self.evaluator = WaymoSimAgentEvaluator(config=config)
-        elif config.EVALUATION.NAME in ["lmdb"]:
-            from bmt.eval.lmdb_evaluator import LMDBEvaluator
-            self.evaluator = LMDBEvaluator(config=config)
-        else:
-            raise ValueError(f"Unknown evaluation name: {config.EVALUATION.NAME}")
-
         self.save_hyperparameters(OmegaConf.to_container(self.config))
 
         self._tokenizer = get_tokenizer(self.config)

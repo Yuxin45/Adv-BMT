@@ -576,7 +576,7 @@ class EvaluationLightningModule(pl.LightningModule):
 
     def preprocess_SCGEN(self, raw_data):
 
-        from safety_critical_scenario_generation import create_new_adv
+        from bmt.safety_critical_scenario_generation import create_new_adv
         data_dict = copy.deepcopy(raw_data)
 
         self.sid = raw_data["metadata/scenario_id"]
