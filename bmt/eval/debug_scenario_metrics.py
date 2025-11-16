@@ -625,14 +625,14 @@ class Evaluator:
 def debug_run_model(config):
     import os
     global SCENE_IDX
-    path = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"
+    path = "../ckpt/last.ckpt"
     omegaconf.OmegaConf.set_struct(config, False)
     config.PREPROCESSING.keep_all_data = True
-    config.pretrain = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"
+    config.pretrain = "../ckpt/last.ckpt"
     config.BACKWARD_PREDICTION = True  # <<<
     config.ADD_CONTOUR_RELATION = True
-    config.DATA.TRAINING_DATA_DIR = "/bigdata/yuxin/waymo_validation_interactive_500"  #"data/20scenarios"
-    config.DATA.TEST_DATA_DIR = "/bigdata/yuxin/waymo_validation_interactive_500"  #"data/20scenarios"
+    config.DATA.TRAINING_DATA_DIR = "waymo_validation_interactive_500"  #"data/20scenarios"
+    config.DATA.TEST_DATA_DIR = "waymo_validation_interactive_500"  #"data/20scenarios"
 
     omegaconf.OmegaConf.set_struct(config, True)
 
@@ -710,14 +710,14 @@ def evaluate_scgen(config):
     from bmt.utils.safety_critical_generation_utils import _overwrite_data_given_agents_not_ooi, get_ego_edge_points, get_ego_edge_points_old, post_process_adv_traj, _overwrite_data_given_agents_ooi, _overwrite_data_given_agents, set_adv, run_backward_prediction_with_teacher_forcing
     from bmt.utils import utils
     import copy
-    path = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"
+    path = "../ckpt/last.ckpt"
     omegaconf.OmegaConf.set_struct(config, False)
     config.PREPROCESSING.keep_all_data = True
-    config.pretrain = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"
+    config.pretrain = "../ckpt/last.ckpt"
     config.BACKWARD_PREDICTION = True  # <<<
     config.ADD_CONTOUR_RELATION = True
-    config.DATA.TRAINING_DATA_DIR = "/bigdata/yuxin/waymo_validation_interactive_500"  #"data/20scenarios"
-    config.DATA.TEST_DATA_DIR = "/bigdata/yuxin/waymo_validation_interactive_500"  #"data/20scenarios"
+    config.DATA.TRAINING_DATA_DIR = "waymo_validation_interactive_500"  #"data/20scenarios"
+    config.DATA.TEST_DATA_DIR = "waymo_validation_interactive_500"  #"data/20scenarios"
     omegaconf.OmegaConf.set_struct(config, True)
     model = utils.get_model(checkpoint_path=path)
     import torch
@@ -819,12 +819,11 @@ def debug_eval_CAT(config):
     from bmt.dataset.scenarionet_utils import overwrite_gt_to_pred_field
     omegaconf.OmegaConf.set_struct(config, False)
     config.PREPROCESSING.keep_all_data = True
-    config.pretrain = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"
-    config.BACKWARD_PREDICTION = True  # <<<
+    config.pretrain = "../ckpt/last.ckpt"
+    config.BACKWARD_PREDICTION = True 
     config.ADD_CONTOUR_RELATION = True
-    # config.DATA.TEST_DATA_DIR = "/bigdata/yuxin/cat_adv_validation_interactive/validation_interactive_58/cat_new/" #"data/20scenarios"
-    config.DATA.TEST_DATA_DIR = "/bigdata/datasets/scenarionet/waymo/validation_interactive/validation_interactive_58/"
-    CAT_DIR = "/bigdata/yuxin/cat_adv_validation_interactive/validation_interactive_58/cat_new"
+    config.DATA.TEST_DATA_DIR = "validation_interactive_500/"
+    CAT_DIR = "cat_adv_validation_interactive/"
     omegaconf.OmegaConf.set_struct(config, True)
 
     test_dataset = InfgenDataset(config, "test")

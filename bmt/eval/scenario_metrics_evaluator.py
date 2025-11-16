@@ -49,7 +49,7 @@ class EvaluationLightningModule(pl.LightningModule):
         self.cat_summary = None
 
         if self.eval_mode == "CAT":
-            cat_dir = "/bigdata/yuxin/CAT_waymo_validation_interactive_500_nearestADV"
+            cat_dir = "CAT_waymo_validation_interactive_500_nearestADV"
             with open(f"{cat_dir}/dataset_summary.pkl", "rb") as f:
                 self.cat_summary = pickle.load(f)
 
@@ -88,7 +88,7 @@ class EvaluationLightningModule(pl.LightningModule):
 
     def preprocess_CAT(self, raw_data):
         sid = raw_data["metadata/scenario_id"]
-        cat_dir = "/bigdata/yuxin/CAT_waymo_validation_interactive_500_nearestADV"
+        cat_dir = "CAT_waymo_validation_interactive_500_nearestADV"
         cat_file_name = f"sd_adv_reconstructed_v0_{sid}_CAT.pkl"
 
         if cat_file_name not in self.cat_summary:
@@ -213,14 +213,14 @@ class EvaluationLightningModule(pl.LightningModule):
 def run_combined_evaluation(config):
     from pytorch_lightning import Trainer
     from bmt.utils import utils
-    path = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"
+    path = "../ckpt/last.ckpt"
     omegaconf.OmegaConf.set_struct(config, False)
     config.PREPROCESSING.keep_all_data = True
-    config.pretrain = "/bigdata/zhenghao/infgen/lightning_logs/infgen/1104_MidGPT_NoAgnt_WTLSgl_WContRel_WBackward_FixedStepAgentID_2024-11-04_2208/checkpoints/last.ckpt"
+    config.pretrain = "../ckpt/last.ckpt"
     config.BACKWARD_PREDICTION = True  # <<<
     config.ADD_CONTOUR_RELATION = True
-    config.DATA.TRAINING_DATA_DIR = "/bigdata/yuxin/waymo_validation_interactive_500"  #"data/20scenarios"
-    config.DATA.TEST_DATA_DIR = "/bigdata/yuxin/waymo_validation_interactive_500"  #"data/20scenarios"
+    config.DATA.TRAINING_DATA_DIR = "waymo_validation_interactive_500"  #"data/20scenarios"
+    config.DATA.TEST_DATA_DIR = "waymo_validation_interactive_500"  #"data/20scenarios"
     omegaconf.OmegaConf.set_struct(config, True)
     model = utils.get_model(checkpoint_path=path)
     model = model.to("cuda")

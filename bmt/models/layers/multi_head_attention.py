@@ -403,7 +403,6 @@ class MultiheadAttention(Module):
                                            src_len).expand(-1, self.num_heads, -1,
                                                            -1).reshape(bsz * self.num_heads, src_len, src_len)
 
-        # Zhenghao: Merge key value cache here!
         if past_key_value is not None:
             # Unpack past keys and values
             past_key, past_value, past_key_padding_mask, _ = past_key_value

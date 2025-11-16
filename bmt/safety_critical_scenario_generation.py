@@ -568,7 +568,7 @@ def main():
     parser.add_argument("--dir", required=True, help="The data folder storing raw tfrecord from Waymo dataset.")
     parser.add_argument("--num_scenario", type=int, default=1)
     parser.add_argument("--save_dir", required=True, help="The place to store .pkl file if different from given in --dir")
-    parser.add_argument("--ckpt_path", type=str, default="/bigdata/zhenghao/infgen/lightning_logs/infgen/1030_gpt_WBack2X_WTLSingle_NewMap_OnWaymo_SplitHeads_2024-10-30_1139/checkpoints/last.ckpt")
+    parser.add_argument("--ckpt_path", type=str, default="ckpt/last.ckpt")
     parser.add_argument("--config_name", type=str, default="1026_gpt")
     parser.add_argument("--TF_mode", type=str, default="no_TF")
     parser.add_argument("--no_ADV", action='store_true')

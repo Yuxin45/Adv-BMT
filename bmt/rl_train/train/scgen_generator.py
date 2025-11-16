@@ -817,7 +817,7 @@ if __name__ == "__main__":
             use_render=False,
             manual_control=False,
             show_interface=False,
-            data_directory="/bigdata/yuxin/scenarionet_waymo_training_500/", # SCGEN_waymo_training_500
+            data_directory="scenarionet_waymo_training_500/", 
             agent_policy=EnvInputPolicy,
             start_scenario_index=0,
             num_scenarios=400,

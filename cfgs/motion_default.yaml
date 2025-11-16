@@ -173,15 +173,6 @@ OPTIMIZATION:
 #    TRAINING_STEPS: 300000
     USE_FOCAL_LOSS: false
 
-
-SUBMISSION:
-    GENERATE_SUBMISSION: false
-    PREFIX: "peng"
-    ACCOUNT: "dr.zhenghao.peng@gmail.com"
-    METHOD_NAME: "peng"
-    num_model_parameters: '10m'  # TODO: Need to be changed accordingly!
-    SAVE_EVAL_DATA: true
-
 TMP_DIR: "tmp"  # Relative to repo root
 
 ACTION_LABEL:

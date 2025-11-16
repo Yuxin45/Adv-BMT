@@ -301,11 +301,11 @@ class EvaluationLightningModule(pl.LightningModule):
         self.adv_index = None
         self.TF_mode = backward_TF_mode
         self.sid = None
-        self.baseline_dir = "/bigdata/yuxin/scenarionet_waymo_training_500"
+        self.baseline_dir = "/scenarionet_waymo_training_500"
         self.overwrite_all_agent = overwrite_all_agent
 
         if self.eval_mode == "CAT":
-            self.cat_dir = "/bigdata/xuanhao/CAT"
+            self.cat_dir = "CAT_scenarios/"
             summary_path = os.path.join(self.cat_dir, "dataset_summary.pkl")
             with open(summary_path, "rb") as f:
                 self.cat_summary = pickle.load(f)
@@ -313,12 +313,11 @@ class EvaluationLightningModule(pl.LightningModule):
 
         elif self.eval_mode in ["STRIVE", "SEAL", "GOOSE"]:
             if self.eval_mode == "STRIVE":
-                # self.baseline_dir = "/bigdata/xuanhao/STRIVE"
-                self.baseline_dir = "/home/yuxin/xuanhao_STRIVE/STRIVE/"
+                self.baseline_dir = "STRIVE_scenarios/"
             elif self.eval_mode == "SEAL":
-                self.baseline_dir = "/bigdata/xuanhao/SEAL"
+                self.baseline_dir = "SEAL_scenarios/"
             elif self.eval_mode == "GOOSE":
-                self.baseline_dir = "/bigdata/xuanhao/GOOSE"
+                self.baseline_dir = "GOOSE_scenarios/"
 
             self.baseline_summary, _, _ = read_dataset_summary(self.baseline_dir)
 
@@ -962,14 +961,13 @@ class EvaluationLightningModule(pl.LightningModule):
 def run_combined_evaluation(config):
     from pytorch_lightning import Trainer
 
-    path = "/bigdata/zhenghao/infgen/lightning_logs/infgen/0205_MidGPT_V18_WBackward_2025-02-05/checkpoints" 
+    path = "../ckpt/last.ckpt"  # change to your checkpoint path
     omegaconf.OmegaConf.set_struct(config, False)
     config.PREPROCESSING.keep_all_data = True
     config.BACKWARD_PREDICTION = True 
 
     # ===== FORMAL TEST =====
-    config.DATA.TEST_DATA_DIR = "/bigdata/yuxin/scenarionet_waymo_training_500" # "/home/yuxin/infgen/debug_scgen" 
-    # config.DATA.TEST_DATA_DIR = "/home/yuxin/infgen/debug_filter" # "/bigdata/yuxin/scenarionet_waymo_training_500" # "/home/yuxin/infgen/debug_scgen"
+    config.DATA.TEST_DATA_DIR = "scenarionet_waymo_training_500" 
     
     model = utils.get_model(checkpoint_path=path)
     model = model.to("cuda")

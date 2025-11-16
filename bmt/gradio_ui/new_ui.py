@@ -23,13 +23,12 @@ dpi = 100
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--share", action="store_true", help="Enable sharing")
-parser.add_argument("--default_ckpt", "--default_model", "--ckpt", type=str, default="/bigdata/zhenghao/infgen/lightning_logs/infgen/0109_MidGPT_V17_Bicy_Regression_WBackward_2025-01-09/checkpoints")
-# parser.add_argument("--default_ckpt", "--default_model", "--ckpt", type=str, default="debug")
+parser.add_argument("--default_ckpt", "--default_model", "--ckpt", type=str, default="../ckpt/last.ckpt")
 parser.add_argument("--default_data", "--data", type=str, default="data/20scenarios")
 parser.add_argument("--port", type=int, default=7860)
 parser.add_argument("--title", type=str, default="Motion Generation")
 parser.add_argument("--default_config_path", type=str, default="1214_midgpt_v14.yaml")
-# parser.add_argument("--default_config_path", type=str, default="motion_default.yaml")
+
 parser.add_argument(
     "--display_video", "--video", action="store_true", help="by default display static images, can display mp4 video"
 )
@@ -43,7 +42,7 @@ default_config.PREPROCESSING.keep_all_data = True
 default_config.ROOT_DIR = str(REPO_ROOT.resolve())
 OmegaConf.set_struct(default_config, True)
 
-DEFAULT_DATA_PATH = args.default_data or "/bigdata/datasets/scenarionet/waymo/validation_interactive/validation_interactive_0"
+DEFAULT_DATA_PATH = args.default_data
 DEFAULT_MODEL = args.default_ckpt or None
 
 NUM_OF_MODES = 6

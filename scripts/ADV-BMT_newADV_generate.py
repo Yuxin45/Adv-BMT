@@ -313,7 +313,7 @@ def main(config):
  
     NUM_MODE = 1 # for now
 
-    path = "/bigdata/zhenghao/infgen/lightning_logs/infgen/0205_MidGPT_V18_WBackward_2025-02-05/checkpoints" 
+    path = "../ckpt/last.ckpt"  # change to your checkpoint path
     model = utils.get_model(checkpoint_path=path).eval()
     tokenizer = model.model.tokenizer
     device = model.device
@@ -328,15 +328,9 @@ def main(config):
         sid = data_dict["metadata/scenario_id"]
         print("current Scenario ID: ", sid)
 
-        # potential_file_name = f"/bigdata/yuxin/SCGEN_scenarionet_waymo_validation_100/sd_{sid}_scgen_backward_0.pkl"
-        # if os.path.exists(potential_file_name):
-        #     continue
 
         ego_traj = data_dict["decoder/agent_position"][:, 0, :2] # (B, 91, 2)
         ego_dist = np.linalg.norm(ego_traj[-1, :] - ego_traj[0, :])
-
-        # if ego_dist < 10: # skippping parking scene
-        #   continue
 
         # vis_data_dict = {
         #     k: (v.cpu().numpy() if isinstance(v, torch.Tensor) else v)
@@ -448,13 +442,6 @@ def main(config):
             original_SD = data_dict["original_SD"]
             new_original_SD = overwrite_to_scenario_description_new_agent(output_dict_mode=global_output_dict_mode, original_SD=copy.deepcopy(original_SD), adv_id=adv_id, from_GT=False, ADV_type='VEHICLE', ooi=[adv_id], success_mode=mode_success_count)
 
-            # ============= for debugging:
-            # from infgen.dataset.preprocessor import preprocess_scenario_description_for_motionlm
-            # scenario_data_dict = preprocess_scenario_description_for_motionlm(
-            #     scenario=new_original_SD, config=config, in_evaluation=True, keep_all_data=True, tokenizer=tokenizer
-            # )
-            # plot_gt(scenario_data_dict, save_path=f"vis_scgen_training_500/{sid}_GT_newSD.png")
-            # ============= 
 
             import pickle 
             with open(f"{SAVE_DIR}/sd_{sid}_SCGEN_backward_Coll_step_{COL_STEP}_heading_{COL_HEADING}_{mode_success_count}.pkl", "wb") as f:
